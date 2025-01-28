@@ -1,155 +1,79 @@
-import { useEffect } from "react";
-import "./App.css";
+import React from "react";
+import { motion } from "framer-motion";
+import "./App.css"; // Import the custom CSS file
 
 const App = () => {
-  useEffect(() => {
-    // Animate floating elements
-    const circles = document.querySelectorAll(".circle");
-    circles.forEach((circle, index) => {
-      circle.style.animation = `float ${3 + index}s ease-in-out infinite`;
-    });
-  }, []);
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   return (
-    <div style={styles.container}>
-      {/* Floating Background Elements */}
-      <div className="circle" style={styles.circle1}></div>
-      <div className="circle" style={styles.circle2}></div>
-      <div className="circle" style={styles.circle3}></div>
+    <div className="app-container">
+      <header className="app-header">
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="app-title"
+        >
+          Shristi Dhakal
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="app-subtitle"
+        >
+          Front-end Developer | Creative Coder
+        </motion.p>
+      </header>
 
-      {/* Hero Section */}
-      <section style={styles.hero}>
-        <div style={styles.heroContent}>
-          <h1 style={styles.heroTitle}>
-            Hi, I'm <span style={styles.name}>Shristi Dhakal</span>
-          </h1>
-          <p style={styles.heroSubtitle}>
-            Creative Developer & Digital Craftsman
-          </p>
-          <div style={styles.ctaContainer}>
-            <button
-              style={styles.ctaPrimary}
-              onClick={() =>
-                document
-                  .getElementById("projects")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              View Work
-            </button>
-            <button
-              style={styles.ctaSecondary}
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Contact Me
-            </button>
-          </div>
-        </div>
-      </section>
+      <main className="app-main">
+        {[
+          {
+            title: "About Me",
+            content: "Passionate about creating responsive web designs.",
+          },
+          {
+            title: "Projects",
+            content: "Explore my latest work and collaborations.",
+          },
+          { title: "Skills", content: "React, JavaScript, CSS, and more." },
+          {
+            title: "Contact",
+            content: "Feel free to reach out for opportunities.",
+          },
+        ].map((card, index) => (
+          <motion.div
+            key={index}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="app-card"
+          >
+            <h2 className="card-title">{card.title}</h2>
+            <p className="card-content">{card.content}</p>
+          </motion.div>
+        ))}
+      </main>
 
-      {/* Featured Projects */}
-      <section id="projects" style={styles.projects}>
-        <h2 style={styles.sectionTitle}>Featured Work</h2>
-        <div style={styles.projectGrid}>
-          {[1, 2, 3].map((project) => (
-            <div key={project} style={styles.projectCard}>
-              <div style={styles.projectImage}></div>
-              <h3 style={styles.projectTitle}>Project {project}</h3>
-              <p style={styles.projectDesc}>
-                An amazing project description...
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" style={styles.contact}>
-        <h2 style={styles.sectionTitle}>Let's Connect</h2>
-        <div style={styles.contactContent}>
-          <div style={styles.contactInfo}>
-            <p style={styles.contactText}>📧 your.email@example.com</p>
-            <p style={styles.contactText}>📱 +1 234 567 890</p>
-            <div style={styles.socialLinks}>
-              <a href="#" style={styles.socialLink}>
-                GitHub
-              </a>
-              <a href="#" style={styles.socialLink}>
-                LinkedIn
-              </a>
-              <a href="#" style={styles.socialLink}>
-                Twitter
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
-        
-        html {
-          scroll-behavior: smooth;
-        }
-      `}</style>
+      <footer className="app-footer">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.5 }}
+        >
+          &copy; {new Date().getFullYear()} Your Name. All rights reserved.
+        </motion.p>
+      </footer>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    height: "100vh",
-    overflowY: "auto",
-    scrollSnapType: "y mandatory",
-    backgroundColor: "#f8fff9",
-    position: "relative",
-  },
-  hero: {
-    height: "100vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    scrollSnapAlign: "start",
-    position: "relative",
-  },
-  projects: {
-    minHeight: "100vh",
-    scrollSnapAlign: "start",
-    padding: "2rem",
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-  },
-  contact: {
-    minHeight: "100vh",
-    scrollSnapAlign: "start",
-    padding: "2rem",
-    backgroundColor: "#f0faf9",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  // Keep other styles from previous version, but remove all padding/margin from:
-  // heroContent, projectGrid, contactContent, etc.
-  heroContent: {
-    maxWidth: "1200px",
-    textAlign: "left",
-    zIndex: 1,
-    padding: "0 2rem",
-  },
-  projectGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    gap: "2rem",
-    maxWidth: "1200px",
-    margin: "0 auto",
-  },
-  // ... (keep other styles the same but remove any padding/margin properties)
 };
 
 export default App;

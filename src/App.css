@@ -1,42 +1,144 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Center the body content */
+body {
+  display: flex; /* Use flexbox to center everything */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Make sure the body takes up the full viewport height */
+  background-color: #f8f8f8; /* Soft background color */
+  color: #333; /* Text color */
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}
+
+/* App container that holds the main content */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontally center the content */
+  justify-content: center; /* Vertically center the content */
+  width: 100%;
+  max-width: 1200px;
+  padding: 50px 20px;
+  background: #ffffff; /* White background */
   text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Header Section */
+.app-header {
+  margin-bottom: 50px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.app-subtitle {
+  font-size: 1.4rem;
+  color: #7f8c8d;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+/* Main Content */
+.app-main {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 20px;
+}
+
+/* Card Styling */
+.app-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.card-content {
+  font-size: 1rem;
+  color: #7f8c8d;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+/* Footer Section */
+.app-footer {
+  margin-top: 80px;
+  text-align: center;
+  font-size: 1rem;
+  color: #7f8c8d;
+  padding: 20px;
+  background-color: #ecf0f1;
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+
+.app-footer p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Footer Hover */
+.app-footer:hover {
+  background-color: #bdc3c7;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 0 15px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .app-container {
+    padding: 30px 20px;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .app-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .app-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
 
-.read-the-docs {
-  color: #888;
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+
+  .app-card {
+    padding: 20px;
+  }
 }
