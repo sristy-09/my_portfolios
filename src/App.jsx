@@ -21,7 +21,7 @@ const App = () => {
       <section style={styles.hero}>
         <div style={styles.heroContent}>
           <h1 style={styles.heroTitle}>
-            Hi, I'm <span style={styles.name}>Your Name</span>
+            Hi, I'm <span style={styles.name}>Shristi Dhakal</span>
           </h1>
           <p style={styles.heroSubtitle}>
             Creative Developer & Digital Craftsman
